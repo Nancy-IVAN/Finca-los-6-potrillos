@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finca los 6 potrillos</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="img/Imagen1.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top logo-rounded">
+                Finca los 6 potrillos
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#quienes-somos">Acerca de nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#servicios">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#galeria">Galería</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Reservas</a>
+                    </li>
+                </ul>
+                <!-- Botón para alternar entre modos -->
+                <div class="theme-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="toggle-theme">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="main-content">
+        <div class="imagen-fondo">
+            <img src="img/welcome.jpeg" alt="Decoración" />
+        </div>
+        <h1 class="welcome-text">BIENVENIDO</h1>
+        
+    </div>
+
+    
+    <section id="quienes-somos" class="quienes-somos">
+        <div class="container d-flex align-items-center justify-content-between">
+            <div class="text-content" style="flex: 1; padding-right: 20px;">
+                <h2>Acerca de nosotros</h2>
+                <p>
+                    En Finca Los 6 Potrillos nos distinguimos por 
+                    ofrecer un espacio exclusivo donde 
+                     el confort y la elegancia se combinan para dar 
+                     vida a eventos inolvidables. Nuestro propósito 
+                     es brindarle a cada cliente una experiencia única,
+                      en un entorno que inspira tranquilidad y armonía.
+                </p>
+                <p>
+                    Nuestras instalaciones pueden adaptarse a todo 
+                    tipo de celebraciones: 
+                    desde bodas y aniversarios, hasta reuniones familiares,
+                     corporativas y eventos sociales. Rodeada de paisajes 
+                     inigualables, Finca Los 6 Potrillos ofrece un ambiente 
+                     natural y sofisticado que convierte cada momento en
+                      algo especial.
+                </p>
+            </div>
+            <div class="image-content" style="flex: 1; text-align: right;">
+                <img src="img/welcome.jpeg" alt="Acerca de nosotros" style="max-width: 100%; height: auto;">
+            </div>
+        </div>
+    </section>
+<section id="galeria" class="galeria">
+  <div class="container">
+    <h2 class="galeria-titulo">Galería de la Finca</h2>
+    <p class="galeria-subtitulo">Descubre los artistas, eventos e instalaciones de nuestra finca</p>
+
+    <!-- Filtros -->
+    <div class="galeria-filtros">
+      <button class="filtro activo" data-filter="todos">Todos</button>
+      <button class="filtro" data-filter="artistas">Artistas</button>
+      <button class="filtro" data-filter="eventos">Eventos</button>
+      <button class="filtro" data-filter="instalaciones">Instalaciones</button>
+    </div>
+
+    <!-- Rejilla de galería -->
+    <div class="galeria-grid">
+      <!-- Artista -->
+      <div class="galeria-item artistas">
+        <img src="img/welcome.jpeg" alt="Chuponcito">
+        <div class="overlay">
+          <h3>Chuponcito</h3>
+          <p>Artista invitado especial</p>
+        </div>
+      </div>
+
+      <div class="galeria-item artistas">
+        <img src="img/welcome.jpeg" alt="Fidel Rueda">
+        <div class="overlay">
+          <h3>Fidel Rueda</h3>
+          <p>Concierto exclusivo en la finca</p>
+        </div>
+      </div>
+
+      <!-- Eventos -->
+      <div class="galeria-item eventos">
+        <img src="img/welcome.jpeg" alt="Boda">
+        <div class="overlay">
+          <h3>Boda Romántica</h3>
+          <p>Un día inolvidable</p>
+        </div>
+      </div>
+
+      <div class="galeria-item eventos">
+        <img src="img/welcome.jpeg" alt="Fiesta">
+        <div class="overlay">
+          <h3>Fiesta de Aniversario</h3>
+          <p>Celebrando juntos</p>
+        </div>
+      </div>
+
+      <!-- Instalaciones -->
+      <div class="galeria-item instalaciones">
+        <img src="img/welcome.jpeg" alt="Caballerizas">
+        <div class="overlay">
+          <h3>Caballerizas</h3>
+          <p>Espacio ideal para paseos</p>
+        </div>
+      </div>
+
+      <div class="galeria-item instalaciones">
+        <img src="img/welcome.jpeg" alt="Alberca">
+        <div class="overlay proximo">
+          <h3>Alberca</h3>
+          <p>¡Próximamente!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  
+  const botones = document.querySelectorAll('.filtro');
+  const items = document.querySelectorAll('.galeria-item');
+
+  botones.forEach(boton => {
+    boton.addEventListener('click', () => {
+      // Quitar clase activa de todos los botones
+      botones.forEach(btn => btn.classList.remove('activo'));
+      boton.classList.add('activo');
+
+      const categoria = boton.getAttribute('data-filter');
+
+      items.forEach(item => {
+        if (categoria === 'todos' || item.classList.contains(categoria)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+
+</script>
+    <footer class="footer">
+    <div class="container text-center">
+        <p>&copy; 2023 Finca los 6 potrillos. Todos los derechos reservados.</p>
+        <p>
+            Desarrollado por 
+            <a href="https://www.instagram.com/moren0_nancy/" target="_blank" class="instagram-link">
+                @moren0_nancy
+            </a>
+        </p>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    const toggleThemeButton = document.getElementById('toggle-theme');
+    const body = document.body;
+
+    toggleThemeButton.addEventListener('click', () => {
+        body.classList.toggle('dark-mode'); 
+        const isDarkMode = body.classList.contains('dark-mode');
+        toggleThemeButton.textContent = isDarkMode ? 'Modo claro' : 'Modo oscuro'; 
+    });
+</script>
+</body>
+</html>

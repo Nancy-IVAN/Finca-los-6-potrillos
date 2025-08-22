@@ -1,0 +1,448 @@
+body {
+     
+    color: rgb(255, 255, 255) !important; /* Texto blanco */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.navbar {
+    position: fixed; /* Fija la barra de navegación en la parte superior */
+    top: 0; /* Asegura que esté en la parte superior de la ventana */
+    left: 0; /* Asegura que esté alineada al borde izquierdo */
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    z-index: 1000; /* Asegura que la barra esté por encima de otros elementos */
+    margin: 0 !important; /* Elimina márgenes */
+    border-radius: 0 !important; /* Elimina bordes redondeados */
+    background-color: white !important; /* Fondo blanco para la barra de navegación */
+    color: black !important; /* Texto negro */
+    padding: 20px 0 !important; /* Aumenta el espacio interno para hacerla más alta */
+    height: auto; /* Ajusta la altura automáticamente según el contenido */
+    display: flex; /* Habilita el modelo de caja flexible */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
+    text-align: center; /* Asegura que el texto esté centrado */
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+    font-family: 'Playfair Display', serif; /* Fuente elegante y cursiva */
+    font-style: italic; /* Aplica estilo cursivo */
+    font-weight: 400; /* Peso de la fuente */
+}
+
+.navbar-nav .nav-link {
+    margin: 0 15px; /* Agrega espacio horizontal entre los enlaces */
+}
+
+.half-page {
+    height: 50vh !important; /* Ocupa la mitad de la altura de la pantalla */
+    background-color: black !important; /* Fondo negro */
+}
+
+.logo-rounded {
+    border-radius: 50%; /* Hace que la imagen sea completamente redonda */
+    margin-left: 30px; /* Agrega un margen a la izquierda del logo */
+}
+
+.center-image {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: calc(100vh - 80px); /* Ajusta la altura del contenedor */
+    margin: 0 20px; /* Elimina el margen superior */
+}
+
+.center-image img {
+    width: 100%; /* La imagen ocupa el 100% del ancho del contenedor */
+    max-width: 100%; /* Evita que la imagen se desborde */
+    max-height: 95%; /* La imagen ocupa un máximo del 95% de la altura */
+    object-fit: contain; /* Asegura que la imagen mantenga sus proporciones */
+    border-radius: 35px; /* Bordes redondeados para un diseño elegante */
+}
+
+.main-content {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: calc(100vh - 80px); /* Ocupa toda la pantalla menos la barra de navegación */
+    overflow: hidden; /* Oculta cualquier contenido que se desborde */
+    margin-top: 80px; /* Ajusta este valor según la altura de la barra de navegación */
+}
+
+.imagen-fondo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Coloca la imagen detrás del texto */
+}
+
+.welcome-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: white;
+    text-align: center;
+    z-index: 1; /* Asegura que el texto esté sobre la imagen */
+}
+
+.arrow-down {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    z-index: 1; /* Asegura que la flecha esté sobre la imagen */
+}
+
+.arrow-down:hover {
+    color: #ccc; /* Cambia el color al pasar el cursor */
+}
+
+.card-body, .card-header {
+    font-family: 'Playfair Display', serif;
+    background-color: white; /* Fondo blanco */
+    color: black; /* Texto negro */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+}
+
+
+.quienes-somos {
+    font-family: 'Playfair Display', serif;
+
+    margin-top: 25px; /* Margen superior */
+    background-color: white; /* Fondo blanco */
+    color: black; /* Texto negro */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+}
+
+.quienes-somos .text-content {
+    color: black; /* Texto negro */
+}
+
+.quienes-somos .image-content img {
+    border-radius: 10px; /* Bordes redondeados para la imagen */
+}
+
+.quienes-somos h2 {
+    margin-bottom: 30px; /* Agrega un margen inferior para separar el título de los párrafos */
+    font-size: 3rem; /* Ajusta el tamaño del título si es necesario */
+    font-weight: bold; /* Asegura que el título sea destacado */
+    text-align: left; /* Alinea el título a la izquierda */
+    color: inherit; /* Hereda el color del modo claro u oscuro */
+}
+
+.quienes-somos p {
+    font-size: 1.2rem; /* Aumenta el tamaño del texto de los párrafos */
+    line-height: 1.8; /* Mejora el espaciado entre líneas */
+    margin-bottom: 20px; /* Agrega un margen inferior entre los párrafos */
+}
+
+.quienes-somos .image-content {
+    margin-left: 20px; /* Agrega un margen izquierdo para separar la imagen del texto */
+}
+
+/* Estilo del contenedor del toggle */
+.theme-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Estilo del switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 25px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 19px;
+    width: 19px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3; /* Cambia el color del fondo cuando está activado */
+}
+
+input:checked + .slider:before {
+    transform: translateX(25px); /* Mueve el círculo hacia la derecha */
+}
+
+/* Modo oscuro */
+body.dark-mode {
+    background-color: black; /* Fondo negro */
+    color: white; /* Texto blanco */
+}
+
+.navbar.dark-mode {
+    background-color: #333 !important; /* Fondo oscuro para la barra de navegación */
+    color: white !important; /* Texto blanco */
+}
+
+.card.dark-mode {
+    background-color: #444; /* Fondo oscuro para las tarjetas */
+    color: white; /* Texto blanco */
+}
+
+.card-body.dark-mode, .card-header.dark-mode {
+    background-color: #444; /* Fondo oscuro */
+    color: white; /* Texto blanco */
+}
+
+.quienes-somos.dark-mode {
+    background-color: black; /* Fondo negro */
+    color: white; /* Texto blanco */
+}
+
+body.dark-mode .quienes-somos {
+    background-color: black; /* Fondo negro */
+    color: white; /* Texto blanco */
+}
+
+body.dark-mode .quienes-somos .text-content {
+    color: white; /* Texto blanco */
+}
+
+body.dark-mode .quienes-somos .image-content img {
+    border-radius: 10px; /* Mantén los bordes redondeados */
+}
+
+.arrow-down.dark-mode {
+    color: white; /* Flecha en modo oscuro */
+}
+
+.arrow-down.dark-mode:hover {
+    color: #ccc; /* Cambia el color al pasar el cursor */
+}
+
+
+
+/* ================================
+   GALERÍA DE EVENTOS
+================================ */
+.galeria {
+  padding: 50px 20px;
+  background-color: white;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode .galeria {
+  background-color: black;
+  color: white;
+}
+
+/* Títulos */
+.galeria-titulo {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+.galeria-subtitulo {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #555;
+}
+body.dark-mode .galeria-subtitulo {
+  color: #ccc;
+}
+
+/* Filtros */
+.galeria-filtros {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  gap: 10px;
+}
+.filtro {
+  padding: 8px 20px;
+  background-color: transparent;
+  border: 2px solid #555;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: 'Playfair Display', serif;
+}
+.filtro:hover,
+.filtro.activo {
+  background-color: #2196F3;
+  color: white;
+  border-color: #2196F3;
+}
+body.dark-mode .filtro {
+  border-color: #ccc;
+  color: white;
+}
+body.dark-mode .filtro:hover,
+body.dark-mode .filtro.activo {
+  background-color: #2196F3;
+}
+
+/* Grid */
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Tarjetas */
+.galeria-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.galeria-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.galeria-item:hover {
+  transform: scale(1.05);
+}
+
+/* Overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: 15px;
+}
+.galeria-item:hover .overlay {
+  opacity: 1;
+}
+.overlay h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+.overlay p {
+  margin: 5px 0 0;
+  font-size: 1rem;
+}
+
+/* Etiqueta Próximamente */
+.overlay.proximo::before {
+  content: "PRÓXIMAMENTE";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #f59e0b;
+  color: black;
+  padding: 5px 12px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+
+/* Footer */
+.footer {
+  background-color: #f8f9fa;
+  color: #000;
+  padding: 20px 0;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.footer a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Footer en modo oscuro */
+body.dark-mode .footer {
+  background-color: #111;
+  color: #fff;
+}
+
+body.dark-mode .footer a {
+  color: #4da3ff;
+}
+
+
+
+.footer {
+    padding: 20px 0;
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    font-size: 14px;
+}
+
+/* Enlace de Instagram */
+.footer .instagram-link {
+    color: var(--footer-link);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.footer .instagram-link:hover {
+    color: var(--footer-link-hover);
+}
+
+/* Variables para modo claro y oscuro */
+:root {
+    --footer-bg: #fff;
+    --footer-text: #000;
+    --footer-link: #e1306c;        /* Color oficial de Instagram */
+    --footer-link-hover: #c13584;  /* Color más oscuro al pasar el mouse */
+}
+
+body.dark-mode {
+    --footer-bg: #000;
+    --footer-text: #fff;
+    --footer-link: #e1306c;
+    --footer-link-hover: #ff5fa2;
+}
