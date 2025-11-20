@@ -321,8 +321,35 @@ body.dark-mode .filtro.activo {
 /* Grid */
 .galeria-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+  grid-auto-rows: 420px;                 /* 2 filas de 350px de alto */
   gap: 20px;
+}
+
+/* RESPONSIVE: 2 columnas en pantallas medianas */
+@media (max-width: 900px) {
+  .galeria-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* RESPONSIVE: 1 columna en pantallas pequeñas */
+@media (max-width: 600px) {
+  .galeria-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cada tarjeta/carrusel del mismo tamaño y alineación */
+.galeria-item {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: none; /* Quita el fondo negro */
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
 }
 
 /* Tarjetas */
@@ -332,6 +359,10 @@ body.dark-mode .filtro.activo {
   border-radius: 15px;
   cursor: pointer;
   transition: transform 0.3s;
+  min-height: 420px; /* antes: 350px, ahora más largo */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 .galeria-item img {
   width: 100%;
@@ -340,6 +371,29 @@ body.dark-mode .filtro.activo {
 }
 .galeria-item:hover {
   transform: scale(1.05);
+}
+
+/* Carrusel: imágenes del mismo tamaño */
+.galeria-item .carousel,
+.galeria-item .carousel-inner,
+.galeria-item .carousel-item,
+.galeria-item .carousel-inner img {
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+/* Overlay: ajusta para que no desborde */
+.overlay {
+  padding: 10px 15px;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Overlay */
@@ -381,7 +435,6 @@ body.dark-mode .filtro.activo {
   font-size: 0.8rem;
   font-weight: bold;
 }
-
 
 /* Footer */
 .footer {
@@ -434,15 +487,542 @@ body.dark-mode .footer a {
 
 /* Variables para modo claro y oscuro */
 :root {
-    --footer-bg: #fff;
-    --footer-text: #000;
-    --footer-link: #e1306c;        /* Color oficial de Instagram */
-    --footer-link-hover: #c13584;  /* Color más oscuro al pasar el mouse */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #000000;
+  --text-secondary: #555555;
+  --card-bg: #ffffff;
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --border-color: rgba(0, 0, 0, 0.1);
+  --footer-bg: #ffffff;
+  --footer-text: #000000;
+  --chat-bg: #ffffff;
+  --chat-text: #000000;
+  --chat-input-bg: #ffffff;
+  --chat-border: rgba(0, 0, 0, 0.1);
 }
 
+/* Variables para modo oscuro */
 body.dark-mode {
-    --footer-bg: #000;
-    --footer-text: #fff;
-    --footer-link: #e1306c;
-    --footer-link-hover: #ff5fa2;
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --card-bg: #1e1e1e;
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --footer-bg: #07121a;
+  --footer-text: #ffffff;
+  --chat-bg: #07101a;
+  --chat-text: #ffffff;
+  --chat-input-bg: rgba(255, 255, 255, 0.05);
+  --chat-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Actualiza los elementos para usar las variables */
+#potrillos-chat-window {
+  background: var(--chat-bg);
+  color: var(--chat-text);
+  border: 1px solid var(--chat-border);
+}
+
+#potrillos-chat-input {
+  background: var(--chat-input-bg);
+  color: var(--chat-text);
+  border: 1px solid var(--chat-border);
+}
+
+.potrillos-msg {
+  color: var(--chat-text);
+}
+
+.footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+}
+
+/* Ajustes específicos para elementos del chat */
+#potrillos-chat-header {
+  background: linear-gradient(90deg,#0dcaf0,#0bb3d6);
+  color: white !important;
+}
+
+.potrillos-chat-toggle {
+  background: #198754;
+  color: white;
+}
+
+/* Enlaces en el chat */
+.potrillos-link {
+  color: #0d6efd;
+}
+
+body.dark-mode .potrillos-link {
+  color: #66b3ff;
+}
+
+/* Ajustes para el input en modo oscuro */
+body.dark-mode #potrillos-chat-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Transiciones suaves */
+#potrillos-chat-window,
+#potrillos-chat-input,
+.potrillos-msg,
+.footer {
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Estilo base para la imagen */
+.img-acerca {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px; /* Opcional, bordes suaves */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+/* Efecto de zoom al pasar el mouse */
+.img-acerca:hover {
+  transform: scale(1.12); /* Aumenta el tamaño un 8% */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Sombra elegante */
+}
+@media (max-width: 768px) {
+  .img-acerca:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+
+/* Sección de Servicios */
+.servicios {
+  padding: 50px 20px;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Encabezado */
+.servicios h2 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  color: var(--color-titulo);
+}
+
+.servicios .descripcion {
+  font-size: 1rem;
+  margin-bottom: 40px;
+  color: var(--color-texto);
+}
+
+/* Grid de servicios */
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+/* Tarjeta individual */
+.servicio-card {
+  background-color: var(--color-card);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+  cursor: pointer;
+}
+
+.servicio-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+/* Imagen dentro de la tarjeta */
+.servicio-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* Título y descripción */
+.servicio-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: var(--color-titulo);
+}
+
+.servicio-card p {
+  font-size: 0.95rem;
+  color: var(--color-texto);
+}
+
+/* Variables para modo claro */
+:root {
+  --color-fondo: #ffffff;
+  --color-titulo: #222;
+  --color-texto: #555;
+  --color-card: #f5f5f5;
+}
+
+/* Variables para modo oscuro */
+body.dark-mode {
+  --color-fondo: #121212;
+  --color-titulo: #f5f5f5;
+  --color-texto: #d1d1d1;
+  --color-card: #1e1e1e;
+}
+
+/* Aplicar color de fondo según modo */
+.servicios {
+  background-color: var(--color-fondo);
+}
+
+
+.video-fondo {
+    width: 100%;
+    height: 100vh; /* ocupa toda la altura de la pantalla */
+    overflow: hidden;
+    position: relative;
+}
+
+.video-fondo video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* asegura que el video cubra todo el contenedor */
+    display: block;
+}
+
+.galeria-item video {
+  position: relative;
+  z-index: 1;
+}
+
+.galeria-item .overlay {
+  pointer-events: none; /* Permite que el video reciba los clics */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.potrillos-chat-toggle{ /* en caso de que el botón se haya añadido por HTML en vez de JS */
+  position: fixed; bottom:30px; right:30px; width:56px; height:56px; border-radius:50%;
+  background:#198754; color:#0e0d0d46; border:0; display:flex;align-items:center;justify-content:center;
+  z-index:99999; box-shadow:0 6px 18px rgba(0,0,0,.25); cursor:pointer;
+}
+body.dark-mode #potrillos-chat-window{ background:#07101a; color:#e6eef6; }
+
+/* Estilos del chat adaptables */
+#potrillos-chat-window {
+  background: #fff;
+  color: #000; /* Texto negro en modo claro */
+}
+
+#potrillos-chat-input {
+  color: inherit; /* Hereda el color del contenedor */
+  background: transparent;
+}
+
+.potrillos-msg {
+  color: inherit; /* Hereda el color del contenedor */
+}
+
+/* Modo oscuro */
+body.dark-mode #potrillos-chat-window {
+  background: #07101a;
+  color: #fff; /* Texto blanco en modo oscuro */
+}
+
+body.dark-mode #potrillos-chat-input {
+  color: #fff; /* Input blanco en modo oscuro */
+}
+
+body.dark-mode .potrillos-msg {
+  color: #fff; /* Mensajes blancos en modo oscuro */
+}
+
+/* El header siempre blanco */
+#potrillos-chat-header {
+  color: #fff !important;
+}
+
+/* Enlaces más visibles */
+.potrillos-link {
+  color: #0066cc;
+}
+
+body.dark-mode .potrillos-link {
+  color: #66b3ff;
+}
+
+/* Color del título "Paquetes Premium" según tema */
+#paquetes h2.text-center.mb-5 {
+  color: #000; /* modo claro */
+  transition: color .2s ease;
+}
+
+body.dark-mode #paquetes h2.text-center.mb-5 {
+  color: #fff; /* modo oscuro */
+}
+
+/* Igualar altura de tarjetas en sección Paquetes */
+#paquetes .col-md-6.col-lg-5 {
+  display: flex;
+  align-items: stretch;
+}
+
+/* Hacer que la card ocupe todo el alto de la columna */
+#paquetes .col-md-6.col-lg-5 > .card {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Asegurar que el body de la card use el espacio restante */
+#paquetes .card .card-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mantener los botones al fondo (ya usas mt-auto, esto lo refuerza) */
+#paquetes .card .mt-auto {
+  margin-top: auto !important;
+}
+
+/* Forzar la misma altura y recorte uniforme en las imágenes superiores */
+#paquetes .card-img-top {
+  width: 100%;
+  height: 260px; /* mismo alto para todas */
+  object-fit: cover;
+  display: block;
+}
+
+/* Transición suave si necesitas ajustar */
+#paquetes .card, #paquetes .card-img-top {
+  transition: box-shadow .2s ease, transform .12s ease;
+}
+
+/* Estilos del footer */
+.footer {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.footer .social-links {
+    font-size: 1.8rem;
+}
+
+.footer .social-link {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #fff;
+    transition: transform 0.2s;
+}
+
+.footer .social-link:hover {
+    transform: scale(1.1);
+}
+
+.footer .facebook { background: #1877f2; }
+.footer .instagram { background: #e4405f; }
+.footer .tiktok { background: #000000; }
+
+.footer .contact-info i {
+    color: var(--primary);
+}
+
+/* Modo oscuro */
+body.dark-mode .footer {
+    background: #07121a;
+}
+
+body.dark-mode .footer .btn-outline-secondary {
+    color: #fff;
+    border-color: rgba(255,255,255,0.2);
+}
+
+body.dark-mode .footer .btn-outline-secondary:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* Footer Moderno */
+.footer-modern {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-top: 1px solid var(--border-color);
+}
+
+/* Brand section */
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+}
+
+/* Info cards */
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.info-card {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    transition: transform 0.2s;
+}
+
+.info-card:hover {
+    transform: translateY(-2px);
+}
+
+.info-card i {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+/* Contact options */
+.contact-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    border: none;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s;
+}
+
+.contact-card:hover {
+    transform: translateY(-2px);
+}
+
+.contact-card .icon-wrap {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.2rem;
+}
+
+.contact-card.phone .icon-wrap { background: #0d6efd; color: white; }
+.contact-card.whatsapp .icon-wrap { background: #25d366; color: white; }
+.contact-card.chat .icon-wrap { background: #6c757d; color: white; }
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Social showcase */
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.social-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s;
+}
+
+.social-item:hover {
+    transform: translateY(-4px);
+}
+
+.social-item i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.social-item.facebook i { color: #1877f2; }
+.social-item.instagram i { color: #e4405f; }
+.social-item.tiktok i { color: #000000; }
+
+.social-cta {
+    text-align: center;
+}
+
+/* Footer bottom */
+.footer-divider {
+    margin: 2rem 0;
+    border-color: var(--border-color);
+    opacity: 0.1;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-bottom a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+/* Dark mode adjustments */
+body.dark-mode .footer-modern {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+body.dark-mode .info-card,
+body.dark-mode .contact-card,
+body.dark-mode .social-item {
+    background: rgba(255,255,255,0.05);
+}
+
+body.dark-mode .social-item.tiktok i {
+    color: #ffffff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .social-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
