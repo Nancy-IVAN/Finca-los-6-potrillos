@@ -152,6 +152,78 @@ body {
     margin-left: 20px; /* Agrega un margen izquierdo para separar la imagen del texto */
 }
 
+/* Acerca de nosotros - responsive */
+.quienes-somos .qs-title {
+  font-size: 1.9rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+/* Layout por defecto (escritorio): texto a la izquierda, imagen a la derecha */
+.quienes-somos .qs-content {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.quienes-somos .text-content {
+  flex: 1;
+  order: 1; /* mostrar primero */
+  padding-right: 1rem;
+}
+
+.quienes-somos .image-content {
+  flex: 1;
+  order: 2;
+  text-align: right;
+}
+
+.quienes-somos .image-content .img-acerca {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+/* Móvil: título, luego imagen, luego texto */
+@media (max-width: 768px) {
+  .quienes-somos .qs-title {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .quienes-somos .qs-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* en columna el orden DOM (image then text) queda: imagen luego texto,
+     por eso el título separado queda arriba: título -> imagen -> texto */
+  .quienes-somos .image-content {
+    order: 1;
+    text-align: center;
+  }
+
+  .quienes-somos .text-content {
+    order: 2;
+    padding-right: 0;
+    margin-top: 0.75rem;
+  }
+
+  .quienes-somos .text-content p {
+    font-size: 0.98rem;
+    line-height: 1.45;
+  }
+
+  .quienes-somos .image-content .img-acerca {
+    width: 95%;
+    max-width: 420px;
+    border-radius: 10px;
+  }
+}
+
 /* Estilo del contenedor del toggle */
 .theme-toggle {
     display: flex;
