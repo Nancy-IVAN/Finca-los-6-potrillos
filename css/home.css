@@ -548,22 +548,36 @@ body.dark-mode {
 }
 
 .potrillos-chat-toggle {
-  background: #198754;
-  color: white;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  cursor: pointer;
 }
 
-/* Enlaces en el chat */
-.potrillos-link {
-  color: #0d6efd;
+.potrillos-chat-toggle video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
 }
 
-body.dark-mode .potrillos-link {
-  color: #66b3ff;
-}
-
-/* Ajustes para el input en modo oscuro */
-body.dark-mode #potrillos-chat-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+/* borde y contraste en modo oscuro */
+body.dark-mode .potrillos-chat-toggle {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+  border: 2px solid rgba(255,255,255,0.06);
 }
 
 /* Transiciones suaves */
@@ -974,6 +988,17 @@ body.dark-mode .footer .btn-outline-secondary:hover {
 .social-item.facebook i { color: #1877f2; }
 .social-item.instagram i { color: #e4405f; }
 .social-item.tiktok i { color: #000000; }
+
+/* Estilo para Airbnb en la sección Síguenos */
+.social-item.airbnb i {
+  color: #FF5A5F; /* color oficial Airbnb */
+}
+body.dark-mode .social-item.airbnb {
+  background: rgba(255,90,95,0.06);
+}
+body.dark-mode .social-item.airbnb i {
+  color: #ff9aa0;
+}
 
 .social-cta {
     text-align: center;
