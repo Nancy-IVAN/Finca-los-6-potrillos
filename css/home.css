@@ -819,53 +819,17 @@ body.dark-mode {
 
 
 .video-fondo {
-  position: relative;
-  width: 100%;
-  height: 60vh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 100%;
+    height: 100vh; /* ocupa toda la altura de la pantalla */
+    overflow: hidden;
+    position: relative;
 }
 
 .video-fondo video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
-/* Responsivo para tablet */
-@media (max-width: 1024px) {
-  .video-fondo {
-    height: 55vh;
-  }
-  
-  .video-fondo video {
-    object-position: center center;
-  }
-}
-
-/* Responsivo para móvil */
-@media (max-width: 768px) {
-  .video-fondo {
-    height: 50vh;
-  }
-  
-  .video-fondo video {
-    object-fit: cover;
-    object-position: center center;
     width: 100%;
     height: 100%;
-  }
-}
-
-/* Extra pequeño (móviles muy pequeños) */
-@media (max-width: 480px) {
-  .video-fondo {
-    height: 45vh;
-  }
+    object-fit: cover; /* asegura que el video cubra todo el contenedor */
+    display: block;
 }
 
 .galeria-item video {
