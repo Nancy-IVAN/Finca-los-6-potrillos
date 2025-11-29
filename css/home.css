@@ -896,53 +896,6 @@ body.dark-mode #paquetes h2.text-center.mb-5 {
 
 /* Estilos del footer */
 .footer {
-    background: var(--bg-secondary);
-    color: var(--text-primary);
-}
-
-.footer .social-links {
-    font-size: 1.8rem;
-}
-
-.footer .social-link {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    color: #fff;
-    transition: transform 0.2s;
-}
-
-.footer .social-link:hover {
-    transform: scale(1.1);
-}
-
-.footer .facebook { background: #1877f2; }
-.footer .instagram { background: #e4405f; }
-.footer .tiktok { background: #000000; }
-
-.footer .contact-info i {
-    color: var(--primary);
-}
-
-/* Modo oscuro */
-body.dark-mode .footer {
-    background: #07121a;
-}
-
-body.dark-mode .footer .btn-outline-secondary {
-    color: #fff;
-    border-color: rgba(255,255,255,0.2);
-}
-
-body.dark-mode .footer .btn-outline-secondary:hover {
-    background: rgba(255,255,255,0.1);
-}
-
-/* Footer Moderno */
-.footer-modern {
     background: var(--bg-primary);
     color: var(--text-primary);
     border-top: 1px solid var(--border-color);
@@ -1091,6 +1044,7 @@ body.dark-mode .social-item.airbnb i {
     gap: 1rem;
 }
 
+
 .footer-bottom a {
     color: var(--primary);
     text-decoration: none;
@@ -1122,4 +1076,53 @@ body.dark-mode .social-item.tiktok i {
     .social-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+}
+
+
+
+.potrillos-chat-toggle{
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width:56px;height:56px;border-radius:50%;
+  padding:0;border:0;background:transparent;cursor:pointer;display:inline-grid;place-items:center;z-index:99999;
+  color:#0d6efd; /* acento azul */
+  transition:transform .12s ease, box-shadow .12s ease;
+  box-shadow:0 6px 18px rgba(13,110,253,0.12);
+}
+.potrillos-chat-toggle:active{ transform: scale(.96); }
+.potrillos-chat-toggle .chat-svg{ width:56px;height:56px; display:block; }
+.potrillos-chat-toggle .ring{ opacity:.18; transform-origin:center; animation:ringPulse 2000ms infinite ease-in-out; stroke-width:2; }
+.potrillos-chat-toggle .core{ opacity:1; transition:transform .18s ease; }
+@keyframes ringPulse{ 0%{transform:scale(1);opacity:.18}50%{transform:scale(1.18);opacity:.06}100%{transform:scale(1);opacity:.18} }
+
+/* puntos (dots) contrastan en azul */
+.potrillos-chat-toggle .dots circle{ transition: transform .18s ease, opacity .18s ease; }
+.potrillos-chat-toggle:hover .dots circle{ transform: translateY(-1px); opacity:1; }
+
+/* Badge */
+.chat-badge{
+  position:absolute; top:4px; right:4px; min-width:20px; height:20px; padding:0 6px; border-radius:999px;
+  background:#e83e8c; color:#fff; font-size:12px; display:inline-flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 8px rgba(0,0,0,0.15); z-index:3;
+}
+.chat-badge.hidden{ display:none; }
+
+/* Pausar pulso cuando el chat esté abierto (clase body.chat-open) */
+body.chat-open .potrillos-chat-toggle .ring{ animation-play-state:paused; opacity:.06; }
+body.chat-open .potrillos-chat-toggle{ transform: translateY(2px); box-shadow:0 4px 10px rgba(0,0,0,0.08); }
+
+/* Forzar fondo transparente para el toggle del chat */
+.potrillos-chat-toggle {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: 0 6px 18px rgba(13,110,253,0.12) !important;
+}
+
+/* Asegurar que el contenido interno (video/SVG) no muestre fondo verde */
+.potrillos-chat-toggle video,
+.potrillos-chat-toggle img,
+.potrillos-chat-toggle .chat-svg,
+.potrillos-chat-toggle::before {
+  background: black !important;
 }

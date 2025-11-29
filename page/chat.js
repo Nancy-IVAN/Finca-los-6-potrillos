@@ -195,5 +195,20 @@
 
     // export open function
     window.abrirPotrillosChat = openChat;
+
+    const btn = document.getElementById('abrirChatBtn');
+    const badge = document.getElementById('chatBadge');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('chat-open');
+      if (badge) badge.classList.add('hidden');
+      try { if (typeof window.abrirPotrillosChat === 'function') window.abrirPotrillosChat(); } catch(e){}
+    });
+    // función pública para actualizar badge
+    window.potrillosSetBadge = (n) => {
+      if (!badge) return;
+      if (!n || n <= 0) badge.classList.add('hidden');
+      else { badge.classList.remove('hidden'); badge.textContent = n > 99 ? '99+' : String(n); }
+    };
   });
 })();
